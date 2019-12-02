@@ -10,6 +10,8 @@ https://adventofcode.com/2019
 
 ### Day 2
 
+[day02.js](./day02.js) - Completed All (Part 1, Part 2)
+
 ### Day 3
 
 ### Day 4

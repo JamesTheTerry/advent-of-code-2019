@@ -31,7 +31,50 @@ const partOne = () => {
   return intcoderOutput[0];
 }
 
+const partTwo = () => {
+  const intcoder = (input) => {
+    intInput = input.slice(0)
+    let output = intInput;
+    for (var i = 0; i < intInput.length; i+=4) {
+      if (intInput[i] === 99) {
+        return output;
+      } else if (intInput[i] === 1) {
+        const sum = intInput[intInput[i+1]] + intInput[intInput[i+2]];
+        // console.log(`${intInput[intInput[i+1]]} + ${intInput[intInput[i+2]]} = ${sum}`);
+        output[intInput[i+3]] = sum;
+      } else if (intInput[i] === 2) {
+        const product = intInput[intInput[i+1]] * intInput[intInput[i+2]];
+        // console.log(`${intInput[intInput[i+1]]} * ${intInput[intInput[i+2]]} = ${product}`);
+        output[intInput[i+3]] = product;
+      }
+    }
+    return output;
+  }
+
+  let input = [1,0,0,3,1,1,2,3,1,3,4,3,1,5,0,3,2,1,9,19,1,10,19,23,2,9,23,27,1,6,27,31,2,31,9,35,1,5,35,39,1,10,39,43,1,10,43,47,2,13,47,51,1,10,51,55,2,55,10,59,1,9,59,63,2,6,63,67,1,5,67,71,1,71,5,75,1,5,75,79,2,79,13,83,1,83,5,87,2,6,87,91,1,5,91,95,1,95,9,99,1,99,6,103,1,103,13,107,1,107,5,111,2,111,13,115,1,115,6,119,1,6,119,123,2,123,13,127,1,10,127,131,1,131,2,135,1,135,5,0,99,2,14,0,0];
+
+  const desired = 19690720;
+  const nounMulti = 270000;
+  const verbAddr = 1;
+  const base = intcoder(input)[0];
+  const diff = desired - base;
+  const noun = Math.floor(diff/nounMulti);
+  const verb = diff - (noun * nounMulti);
+
+  input[1] = noun; // noun - seems to increase 270,000
+  input[2] = verb; // verb - seems to increase by 1
+  console.log('noun:', noun);
+  console.log('verb:', verb);
+  const intcoderOutput = intcoder(input);
+  console.log(`Noun and verb equal desired output: ${intcoderOutput[0] === desired}`)
+  console.log('Computing 100 * noun + verb (below)...')
+  return 100 * noun + verb;
+}
+
+
 console.info('-------------')
 console.info('Advent Day 01')
 console.info('-------------')
 console.info('Part One:', partOne())
+console.info('-------------')
+console.info('Part Two:', partTwo())
